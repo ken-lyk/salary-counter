@@ -14,6 +14,7 @@ function App() {
     const [ytdEarnings, setYtdEarnings] = useState(0);
     const [includeWeekends, setIncludeWeekends] = useState(true); // Default to 7-day week
     const [hourSchedule, setHourSchedule] = useState(24); // Default to 24 hours
+    const [currency, setCurrency] = useState('SGD'); // Default to SGD
 
     const intervalRef = useRef<number | null>(null);
     const lastTickTimeRef = useRef<number | null>(null);
@@ -35,6 +36,8 @@ function App() {
 
         return { perDay, perHour, perMinute, perSecond };
     }, [monthlyIncome, includeWeekends, hourSchedule]);
+
+    
 
     // Effect to initialize and update the base YTD earnings
     useEffect(() => {
@@ -157,10 +160,10 @@ function App() {
 
                 <div className="ytd-display">
                     <div>Year-to-Date Earnings</div>
-                    <span>${ytdEarnings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    <span>{new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(ytdEarnings)}</span>
                 </div>
 
-                <div className="counter-display" title="Session Earnings">${earned.toFixed(6)}</div>
+                <div className="counter-display" title="Session Earnings">{new Intl.NumberFormat('en-US', { style: 'currency', currency: currency, minimumFractionDigits: 6 }).format(earned)}</div>
 
                 <div className="progress-container">
                     <div className="progress-label">Daily Goal: {progressPercentages.daily.toFixed(2)}%</div>
@@ -178,9 +181,9 @@ function App() {
                 </div>
 
                 <div className="rates-display">
-                    <div className="rate-item"><strong>Per Day:</strong> ${rates.perDay.toFixed(2)}</div>
-                    <div className="rate-item"><strong>Per Hour:</strong> ${rates.perHour.toFixed(2)}</div>
-                    <div className="rate-item"><strong>Per Minute:</strong> ${rates.perMinute.toFixed(2)}</div>
+                    <div className="rate-item"><strong>Per Day:</strong> {new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(rates.perDay)}</div>
+                    <div className="rate-item"><strong>Per Hour:</strong> {new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(rates.perHour)}</div>
+                    <div className="rate-item"><strong>Per Minute:</strong> {new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(rates.perMinute)}</div>
                 </div>
 
                 <div className="controls-wrapper">
@@ -206,6 +209,30 @@ function App() {
                                 <option value="24">24 Hours</option>
                                 <option value="9">9 Hours</option>
                                 <option value="8">8 Hours</option>
+                            </select>
+                        </div>
+                        
+                        <div className="toggle-container">
+                            <label htmlFor="currency-select">Currency</label>
+                            <select id="currency-select" className='select-control' value={currency} onChange={(e) => setCurrency(e.target.value)} disabled={running}>
+                                <option value="AUD">AUD</option>
+                                <option value="CAD">CAD</option>
+                                <option value="CHF">CHF</option>
+                                <option value="CNY">CNY</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                                <option value="HKD">HKD</option>
+                                <option value="IDR">IDR</option>
+                                <option value="INR">INR</option>
+                                <option value="JPY">JPY</option>
+                                <option value="KRW">KRW</option>
+                                <option value="MYR">MYR</option>
+                                <option value="PHP">PHP</option>
+                                <option value="SGD">SGD</option>
+                                <option value="THB">THB</option>
+                                <option value="TWD">TWD</option>
+                                <option value="USD">USD</option>
+                                <option value="VND">VND</option>
                             </select>
                         </div>
                     </div>

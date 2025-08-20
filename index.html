@@ -3,8 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/app.png" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salary Counter</title>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
