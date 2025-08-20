@@ -6,6 +6,19 @@
     min-height: 100vh;
     padding: 2rem;
     text-align: center;
+    position: relative; /* Added for positioning the GitHub link */
+}
+
+.github-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #333;
+    transition: color 0.2s ease-in-out;
+}
+
+.github-link:hover {
+    color: #007bff;
 }
 
 .content-wrapper h1 {
