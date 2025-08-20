@@ -184,3 +184,23 @@
 .btn-reset:hover {
     background-color: #545b62;
 }
+
+.footer {
+    width: 100%;
+    padding: 15px 0;
+    background-color: #f0f0f0;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 30px;
+    /* Push footer to the bottom */
+}
+
+.footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

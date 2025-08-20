@@ -246,6 +246,11 @@ function App() {
                     </div>
                 </div>
             </div>
+            <footer className="footer">
+                <a href="https://github.com/ken-lyk/salary-counter" target="_blank" rel="noopener noreferrer">
+                    GitHub Repository
+                </a>
+            </footer>
         </div>
     );
 }
